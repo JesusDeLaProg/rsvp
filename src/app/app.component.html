@@ -1,1 +1,33 @@
+<mat-toolbar [ngClass]="{ 'mat-elevation-z24': (scrollY > 0) }" color="primary">
+  <mat-toolbar-row>
+    <span class="spacer"></span>
+    Mariage
+    <span class="spacer"></span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <span class="spacer"></span>
+  <span>Maxime & Jade</span>
+  <span class="spacer"></span>
+  <button (click)="panel?.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <mat-expansion-panel>
+
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput type="number" min="1">
+      </mat-form-field>
+  
+    </mat-expansion-panel>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="top-margin"></div>
+
 <router-outlet></router-outlet>

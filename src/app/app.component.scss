@@ -1,0 +1,27 @@
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    transition: 0.5s ease-in;
+    transition-property: box-shadow;
+
+    .spacer {
+        flex: 1 1 auto;
+    }
+
+    mat-toolbar-row {
+        height: unset;
+    }
+
+    mat-expansion-panel {
+        width: 100%;
+    }
+}
+
+div.top-margin {
+    height: 65px;
+}
+
+div {
+    height: 5000px;
+}
