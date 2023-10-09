@@ -4,6 +4,8 @@ mat-toolbar {
     z-index: 1000;
     transition: 0.5s ease-in;
     transition-property: box-shadow;
+    background: linear-gradient(180deg, var(--mat-toolbar-container-background-color) 0%, rgba(white, 0) 100%);
+    padding-bottom: 30px;
 
     .spacer {
         flex: 1 1 auto;
@@ -15,13 +17,39 @@ mat-toolbar {
 
     mat-expansion-panel {
         width: 100%;
+        background: none;
+
+        div.expansion-panel-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    div.title {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: -48px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+
+        span {
+            font-size: larger;
+            text-align: center;
+            font-weight: 600;
+            font-style: italic;
+        }
     }
 }
 
 div.top-margin {
-    height: 65px;
+    height: var(--mat-toolbar-standard-height);
 }
 
-div {
-    height: 5000px;
+@media (max-width: 599px) {
+    div.top-margin {
+        height: var(--mat-toolbar-mobile-height);
+    }
 }
