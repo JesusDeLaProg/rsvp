@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <span *ngIf="!editingName">
+                <button mat-icon-button (click)="editingName = true"><mat-icon>edit</mat-icon></button>
+                <span>{{personNameControl.value}}</span>
+            </span>
+            <mat-form-field appearance="outline" *ngIf="editingName">
+                <mat-label>Nom Complet</mat-label>
+                <input matInput [formControl]="personNameControl">
+                <button *ngIf="!personNameControl.invalid" mat-icon-button matSuffix
+                    (click)="editingName = false"><mat-icon>check</mat-icon></button>
+            </mat-form-field>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <label>Serez-vous des nôtres?</label>
+        <mat-radio-group [(ngModel)]="present" class="presence-radio-group"
+            (change)="present === true ? panel.open() : panel.close()">
+            <mat-radio-button [value]="true">Oui</mat-radio-button>
+            <mat-radio-button [value]="false">Non</mat-radio-button>
+        </mat-radio-group>
+        <mat-expansion-panel class="mat-elevation-z0">
+            <div class="expansion-panel-content">
+                <mat-divider></mat-divider>
+                <div class="row">
+                    Plat principal choisi:
+                </div>
+                <div class="row">
+                    <span class="row-label">{{getFoodChoiceLabel()}}</span>
+                    <span class="spacer"></span>
+                    <button mat-icon-button (click)="openBottomSheet()"><mat-icon>edit</mat-icon></button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button [disabled]="!isReadyToSubmit()">CONFIRMER</button>
+    </mat-card-actions>
+</mat-card>

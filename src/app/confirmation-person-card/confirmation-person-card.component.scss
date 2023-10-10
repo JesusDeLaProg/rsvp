@@ -1,0 +1,43 @@
+mat-card {
+    margin: 20px;
+
+    mat-card-title {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    mat-card-actions > button {
+        font-weight: bold;
+    }
+
+    mat-radio-group.presence-radio-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+mat-expansion-panel {
+    width: 100%;
+    background: none;
+
+    div.expansion-panel-content {
+        display: flex;
+        flex-direction: column;
+
+        div.row {
+            display: inline-flex;
+
+            .spacer {
+                flex-grow: 1;
+            }
+
+            .row-label {
+                display: inline-flex;
+                align-items: center;
+            }
+        }
+    }
+}
