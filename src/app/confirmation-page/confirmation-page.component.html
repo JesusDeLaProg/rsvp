@@ -1,2 +1,6 @@
-<rsvp-confirmation-person-card personName="Roxanne Corbeil"></rsvp-confirmation-person-card>
-<rsvp-confirmation-person-card personName="Plus Un à Roxanne"></rsvp-confirmation-person-card>
+<rsvp-confirmation-person-card [personName]="person1"></rsvp-confirmation-person-card>
+<rsvp-confirmation-person-card [personName]="person2" [hideable]="true"></rsvp-confirmation-person-card>
+<button class="info" mat-raised-button
+#tooltip="matTooltip" matTooltipPosition="after" (click)="tooltip.toggle()"
+matTooltip="L'invitation que vous avez reçue par la poste est seulement pour vous (seul(e), en couple ou avec +1).">
+<mat-icon>info</mat-icon>Seulement 2 personnes?</button>

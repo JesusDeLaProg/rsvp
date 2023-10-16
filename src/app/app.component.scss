@@ -4,7 +4,7 @@ mat-toolbar {
     z-index: 1000;
     transition: 0.5s ease-in;
     transition-property: box-shadow;
-    background: linear-gradient(180deg, var(--mat-toolbar-container-background-color) 0%, white 100%);
+    background: linear-gradient(180deg, rgba(#777, 0.75) 0%, rgba(white, 0.5) 90%, rgba(white, 0) 100%);
     padding-bottom: 30px;
 
     .spacer {
@@ -23,6 +23,10 @@ mat-toolbar {
             display: flex;
             flex-direction: column;
             justify-content: center;
+        }
+
+        a {
+            text-decoration: none;
         }
     }
 

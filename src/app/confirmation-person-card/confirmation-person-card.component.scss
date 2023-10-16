@@ -6,6 +6,13 @@ mat-card {
         display: flex;
         flex-direction: row;
         align-items: center;
+
+        .card-title-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
     }
 
     mat-card-actions > button {
@@ -16,6 +23,15 @@ mat-card {
         width: 100%;
         display: flex;
         flex-direction: column;
+    }
+}
+
+mat-card.hidden {
+    background-color: rgba(white, 0.25);
+    color: rgba(black, 0.25);
+
+    button.card-hide {
+        color: black;
     }
 }
 
@@ -30,14 +46,14 @@ mat-expansion-panel {
         div.row {
             display: inline-flex;
 
-            .spacer {
-                flex-grow: 1;
-            }
-
             .row-label {
                 display: inline-flex;
                 align-items: center;
             }
         }
     }
+}
+
+.spacer {
+    flex-grow: 1;
 }
