@@ -1,8 +1,7 @@
 <mat-toolbar [ngClass]="{ 'mat-elevation-z24': (scrollY > 0) }">
   <mat-toolbar-row>
     <div class="title">
-      <span>Maxime & Jade</span>
-      <span>24 août 2024</span>
+      <span>M&J</span>
     </div>
     <button (click)="panel?.toggle()" mat-icon-button class="example-icon"
       aria-label="Example icon-button with menu icon">
@@ -12,9 +11,9 @@
   <mat-toolbar-row>
     <mat-expansion-panel class="mat-elevation-z0">
       <div class="expansion-panel-content">
+        <a mat-button routerLink="/">Accueil</a>
+        <a mat-button routerLink="/faq">FAQ</a>
         <a mat-button routerLink="/confirmation">Confirmer votre présence</a>
-        <a mat-button routerLink="/link2">Link 2</a>
-        <a mat-button routerLink="/link3">Link 3</a>
       </div>
     </mat-expansion-panel>
   </mat-toolbar-row>

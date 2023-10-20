@@ -130,12 +130,20 @@ body {
 
 body {
   margin: 0;
-  font-family: "Playfair Display", "Helvetica Neue", sans-serif;
-  font-weight: 500;
+  font-family: "Cormorant Garamond", "Helvetica Neue", sans-serif;
+  font-weight: 400;
   font-size: large;
   /*background: linear-gradient(30deg, rgba(mat.get-color-from-palette($marriage-rsvp-accent, 800), 0.2) 0%, rgba(white, 0) 75%);*/
   /*background-image: url("assets/paper-bg.jpg");
   background-size: auto;*/
+}
+
+h1 {
+  font-weight: 400;
+}
+
+h2, h3 {
+  font-weight: 300;
 }
 
 div.mat-mdc-card-header-text {
@@ -143,10 +151,10 @@ div.mat-mdc-card-header-text {
 }
 
 img.bg {
-  position: absolute;
+  position: static;
   top: 0;
   left: 0;
   width: 100%;
   height: 100dvh;
-  opacity: 0.25;
+  opacity: 0.05;
 }

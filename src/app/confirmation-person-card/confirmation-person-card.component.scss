@@ -1,5 +1,8 @@
 mat-card {
     margin: 20px;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
 
     mat-card-title {
         font-weight: bold;
@@ -29,6 +32,7 @@ mat-card {
 mat-card.hidden {
     background-color: rgba(white, 0.25);
     color: rgba(black, 0.25);
+    border-color: gray;
 
     button.card-hide {
         color: black;
