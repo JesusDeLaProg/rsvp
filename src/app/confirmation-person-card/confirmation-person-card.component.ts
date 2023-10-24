@@ -25,19 +25,27 @@ export class ConfirmationPersonCardComponent implements OnInit {
   hidden = false;
   editingName = false;
   personNameControl = new FormControl('', [Validators.required,
-    (c: AbstractControl<string>) => c.value.split(' ').length >= 2 ? {} : { completeName: true }]);
+    (c: AbstractControl<string>) => {
+      const parts = c.value.split(' ');
+      if (parts.every(s => !!s) && parts.length >= 2) {
+        return {};
+      } else {
+        return { completeName: true };
+      }
+    }]);
   present: boolean | null = null;
   foodChoice: number | null = null;
 
   constructor(private bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
+    this.panel?.close();
     if (this.hideable) {
       this.hidden = !this.personNameControl.value;
     }
   }
 
-  isReadyToSubmit() {
+  get isReadyToSubmit() {
     return !this.hidden &&
       this.foodChoice !== null &&
       [0, 1].includes(this.foodChoice) &&

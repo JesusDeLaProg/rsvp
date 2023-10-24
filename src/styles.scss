@@ -151,10 +151,17 @@ div.mat-mdc-card-header-text {
 }
 
 img.bg {
-  position: static;
+  position: fixed;
+  pointer-events: none;
   top: 0;
   left: 0;
   width: 100%;
   height: 100dvh;
   opacity: 0.05;
+}
+
+.mat-expansion-panel .mat-expansion-panel-content {
+  &.ng-animating {
+     height: 0;
+  }
 }

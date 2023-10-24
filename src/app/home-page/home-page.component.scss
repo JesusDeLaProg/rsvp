@@ -26,21 +26,16 @@ div.welcome {
     width: 100%;
     background-image: url("../../assets/babys-breath.jpg");
     background-size: cover;
-    height: calc(100dvh - var(--mat-toolbar-standard-height) - 100px);
+    height: calc(100dvh - var(--mat-toolbar-standard-height));
 
     div.content {
         padding-top: 15px;
         background: linear-gradient(180deg, rgba(white, 1) 0%, rgba(white, 0) 100%);
     }
-
-    button {
-        position: relative;
-        z-index: 200;
-    }
 }
 
 @media (max-width: 599px) {
     div.welcome {
-        height: calc(100dvh - var(--mat-toolbar-mobile-height) - 100px);
+        height: calc(100dvh - var(--mat-toolbar-mobile-height));
     }
 }

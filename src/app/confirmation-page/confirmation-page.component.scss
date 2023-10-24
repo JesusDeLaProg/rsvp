@@ -26,8 +26,6 @@ a.map-link {
     color: black;
     display: block;
     background-size: cover;
-    position: relative;
-    z-index: 200;
     width: 100%;
     height: 200px;
     background-image: url("../../assets/saint-gabriel-map-big.png");
@@ -38,5 +36,33 @@ a.map-link {
         font-size: 50px;
         width: 50px;
         height: 50px;
+    }
+}
+
+button.confirm {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-family: "Cormorant Garamond", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: large;
+
+    .button-content {
+        display: flex;
+        height: 24px;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .button-icon {
+            width: 24px;
+            height: 24px;
+            display: grid;
+        
+            mat-icon {
+                grid-row: 1;
+                grid-column: 1;
+            }
+        }
     }
 }

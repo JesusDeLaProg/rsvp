@@ -1,11 +1,9 @@
 mat-toolbar {
     position: fixed;
     top: 0;
-    z-index: 1000;
     transition: 0.5s ease-in;
     transition-property: box-shadow;
-    background: none;// linear-gradient(180deg, rgba(#777, 0.75) 0%, rgba(white, 0.5) 90%, rgba(white, 0) 100%);
-    padding-bottom: 30px;
+    background: white;// linear-gradient(180deg, rgba(#777, 0.75) 0%, rgba(white, 0.5) 90%, rgba(white, 0) 100%);
 
     .spacer {
         flex: 1 1 auto;
@@ -46,11 +44,11 @@ mat-toolbar {
 }
 
 div.top-margin {
-    height: calc(var(--mat-toolbar-standard-height) + 100px);
+    height: var(--mat-toolbar-standard-height);
 }
 
 @media (max-width: 599px) {
     div.top-margin {
-        height: calc(var(--mat-toolbar-mobile-height) + 100px);
+        height: var(--mat-toolbar-mobile-height);
     }
 }

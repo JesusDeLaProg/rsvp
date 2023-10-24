@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatRippleModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
 import { HomePageComponent } from './home-page/home-page.component';
 import { ConfirmationPersonCardComponent } from './confirmation-person-card/confirmation-person-card.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { FoodMenuComponent } from './food-menu/food-menu.component';
     ConfirmationPageComponent,
     HomePageComponent,
     ConfirmationPersonCardComponent,
-    FoodMenuComponent
+    FoodMenuComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { FoodMenuComponent } from './food-menu/food-menu.component';
     MatIconModule,
     MatInputModule,
     MatRadioModule,
+    MatRippleModule,
     MatToolbarModule,
     MatTooltipModule,
     ReactiveFormsModule,

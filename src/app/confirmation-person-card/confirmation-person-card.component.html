@@ -12,7 +12,7 @@
                 <input matInput [formControl]="personNameControl">
                 <button *ngIf="!personNameControl.invalid" mat-icon-button matSuffix
                     (click)="editingName = false"><mat-icon>check</mat-icon></button>
-                <mat-hint style="font-size: x-small;">Veuillez entrer le nom complet</mat-hint>
+                <mat-hint style="font-size: small;">Veuillez entrer le nom complet</mat-hint>
             </mat-form-field>
             <span class="spacer"></span>
             <button *ngIf="hideable" mat-icon-button class="card-hide" (click)="hidden = !hidden; editingName = false">
@@ -42,7 +42,4 @@
             </div>
         </mat-expansion-panel>
     </mat-card-content>
-    <mat-card-actions align="end">
-        <button mat-button [disabled]="!isReadyToSubmit()">CONFIRMER</button>
-    </mat-card-actions>
 </mat-card>
