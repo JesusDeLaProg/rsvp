@@ -101,6 +101,13 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "marriage-rsvp:build:production"
+          }
         }
       }
     }

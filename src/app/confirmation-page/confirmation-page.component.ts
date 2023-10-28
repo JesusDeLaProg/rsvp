@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ConfirmationPersonCardComponent, PersonConfirmation } from '../confirmation-person-card/confirmation-person-card.component';
 
 @Component({
   selector: 'rsvp-confirmation-page',
@@ -29,12 +30,48 @@ import { Component, OnInit } from '@angular/core';
     ]),
   ]
 })
-export class ConfirmationPageComponent implements OnInit {
-  person1: string = "";
-  person2: string = "";
+export class ConfirmationPageComponent {
+  @ViewChild('rsvp1')
+  rsvp1?: ConfirmationPersonCardComponent;
+  @ViewChild('rsvp2')
+  rsvp2?: ConfirmationPersonCardComponent;
 
-  ngOnInit(): void {
-    this.person1 = window.sessionStorage.getItem('person1') || '';
-    this.person2 = window.sessionStorage.getItem('person2') || '';
+  get person1(): PersonConfirmation {
+    return this.getPerson('person1');
+  }
+  set person1(v: PersonConfirmation) {
+    sessionStorage.setItem('person1', JSON.stringify(v));
+  }
+  get person2() {
+    return this.getPerson('person2');
+  }
+  set person2(v: PersonConfirmation) {
+    if (this.rsvp2?.hidden) {
+      sessionStorage.removeItem('person2');
+    }
+    sessionStorage.setItem('person2', JSON.stringify(v));
+  }
+
+  getPerson(key: string): PersonConfirmation {
+    const p = sessionStorage.getItem(key);
+    if (p) {
+      try {
+        return JSON.parse(p);
+      } catch (e) {
+        return {};
+      }
+    } else {
+      return {};
+    }
+  }
+
+  confirm() {
+    if (this.rsvp1?.isReadyToSubmit && (this.rsvp2?.hidden || this.rsvp2?.isReadyToSubmit)) {
+      if (this.rsvp2.hidden) {
+        alert(`Confirmation:\n${JSON.stringify(this.getPerson('person1'))}`);
+      } else {
+        alert(`Confirmation:\n${JSON.stringify(this.getPerson('person1'))}\n${JSON.stringify(this.getPerson('person2'))}`);
+      }
+    }
   }
 }

@@ -8,7 +8,7 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 })
 export class FoodMenuComponent {
   editMode = false;
-  foodChoice: number|null = null;
+  foodChoice?: number;
 
   constructor(private bottomSheetRef?: MatBottomSheetRef<FoodMenuComponent>) {}
 

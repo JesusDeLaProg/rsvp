@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "firebase-marriage-rsvp": {
+      "hosting": {
+        "marriage-rsvp": [
+          "fir-marriage-rsvp"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "firebase-marriage-rsvp"
+  }
+}

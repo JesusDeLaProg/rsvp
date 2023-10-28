@@ -108,7 +108,7 @@
                 Quelles sont nos options d'hébergement?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Les mariés iront dormir après la réception à l'Hôtel X, situé au XYZ. Si vous désirez dormir au même hôtel, veuillez nous l'indiquer le plus vite possible pour que nous puissions essayer de réserver toutes les chambres en un seul bloc.</p>
+        <p>Les mariés iront dormir après la réception à l'Hôtel X, situé au XYZ. Si vous désirez dormir au même hôtel à vos frais, au coût de X$ la nuit, veuillez nous l'indiquer le plus vite possible pour que nous puissions essayer de réserver toutes les chambres en un seul bloc.</p>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle #q9>
         <mat-expansion-panel-header>
@@ -117,7 +117,7 @@
                     <mat-icon @fade *ngIf="!q9.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q9.expanded">remove</mat-icon>
                 </span>
-                Y aura-t-il des options végétariennes ou kéto lors du repas?
+                Y aura-t-il des options végétariennes lors du repas?
             </mat-panel-title>
         </mat-expansion-panel-header>
         <p>Si vous avez de telles restrictions, veuillez nous l'indiquer dans le champ “Allergies/Restrictions” sur la <a routerLink="/confirmation">page de confirmation</a> pour que nous puissions travailler avec L'Auberge pour concevoir un plat principal qui saura satisfaire toutes les restrictions alimentaires.</p>
@@ -156,6 +156,6 @@
                 J'ai d'autres questions, comment puis-je vous les poser?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Vous pouvez nous poser toutes vos questions par courriel au <a *ngIf="q12.expanded" href="mailto:{{email}}">{{email}}</a> au par appel ou texto au <a *ngIf="q12.expanded" href="tel:{{telephone}}">{{telephone}}</a>. Il nous fera grand plaisir de discuter avec vous et de répondre à vos questions. Si vous avez une excellente question, nous pourrions même vous faire l'honneur de l'ajouter à cette FAQ!</p>
+        <p>Vous pouvez nous poser toutes vos questions par courriel au <a *ngIf="q12.expanded" href="mailto:{{email}}">{{email}}</a>, ou par appel ou texto au <a *ngIf="q12.expanded" href="tel:{{telephone}}">{{telephone}}</a>. Il nous fera grand plaisir de discuter avec vous et de répondre à vos questions. Si vous avez une excellente question, nous pourrions même vous faire l'honneur de l'ajouter à cette FAQ!</p>
     </mat-expansion-panel>
 </mat-accordion>

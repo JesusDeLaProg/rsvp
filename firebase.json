@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "marriage-rsvp",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

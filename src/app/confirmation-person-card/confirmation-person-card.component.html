@@ -8,7 +8,7 @@
                 <span>{{personNameControl.value || "SVP entrez un nom"}}</span>
             </span>
             <mat-form-field appearance="outline" *ngIf="editingName">
-                <mat-label>Nom Complet</mat-label>
+                <mat-label>Prénom, Nom</mat-label>
                 <input matInput [formControl]="personNameControl">
                 <button *ngIf="!personNameControl.invalid" mat-icon-button matSuffix
                     (click)="editingName = false"><mat-icon>check</mat-icon></button>
@@ -22,8 +22,8 @@
     </mat-card-header>
     <mat-card-content>
         <label>Serez-vous des nôtres?</label>
-        <mat-radio-group [(ngModel)]="present" class="presence-radio-group"
-            (change)="present === true ? panel.open() : panel.close()"
+        <mat-radio-group [(ngModel)]="personConfirmation.present" class="presence-radio-group"
+            (change)="presenceChanged(this.personConfirmation.present ?? false)"
             [disabled]="hidden">
             <mat-radio-button [value]="true">Oui</mat-radio-button>
             <mat-radio-button [value]="false">Non</mat-radio-button>
@@ -35,7 +35,7 @@
                     Plat principal choisi:
                 </div>
                 <div class="row">
-                    <span class="row-label">{{getFoodChoiceLabel()}}</span>
+                    <span class="row-label">{{foodChoiceLabel}}</span>
                     <span class="spacer"></span>
                     <button mat-icon-button [disabled]="hidden" (click)="openBottomSheet()"><mat-icon>edit</mat-icon></button>
                 </div>
