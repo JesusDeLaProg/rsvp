@@ -23,11 +23,11 @@
     <mat-card-content>
         <label>Serez-vous des nôtres?</label>
         <mat-radio-group [(ngModel)]="personConfirmation.present" class="presence-radio-group"
-            (change)="presenceChanged(this.personConfirmation.present ?? false)">
+            (change)="presenceChanged(personConfirmation.present ?? false)">
             <mat-radio-button [value]="true">Oui</mat-radio-button>
             <mat-radio-button [value]="false">Non</mat-radio-button>
         </mat-radio-group>
-        <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel class="mat-elevation-z0" [expanded]="!!personConfirmation.present">
             <div class="expansion-panel-content">
                 <mat-divider></mat-divider>
                 <div class="row">

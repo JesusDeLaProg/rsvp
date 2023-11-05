@@ -1,3 +1,15 @@
+div.header {
+    width: 215px;
+    height: 215px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    background-image: url('../../assets/floral-wreath.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 button.info {
     margin-left: 20px;
     margin-right: 20px;
@@ -5,6 +17,11 @@ button.info {
 
 h1 {
     margin-top: 0;
+
+    &.title {
+        text-align: center;
+        margin: auto;
+    }
 }
 
 h4 {
@@ -58,7 +75,7 @@ button.confirm {
             width: 24px;
             height: 24px;
             display: grid;
-        
+
             mat-icon {
                 grid-row: 1;
                 grid-column: 1;

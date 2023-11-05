@@ -1,7 +1,6 @@
 import { Component, ViewChild, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { MatExpansionPanel } from '@angular/material/expansion';
 import { FoodMenuComponent } from '../food-menu/food-menu.component';
 import { firstValueFrom } from 'rxjs';
 import { PersonConfirmation } from '../types/person-confirmation';
@@ -12,9 +11,6 @@ import { PersonConfirmation } from '../types/person-confirmation';
   styleUrls: ['./confirmation-person-card.component.scss']
 })
 export class ConfirmationPersonCardComponent {
-
-  @ViewChild(MatExpansionPanel)
-  panel?: MatExpansionPanel;
 
   @ViewChild('nameInput')
   nameInput?: ElementRef;
@@ -99,11 +95,6 @@ export class ConfirmationPersonCardComponent {
   }
 
   presenceChanged(b: boolean) {
-    if (b) {
-      this.panel?.open();
-    } else {
-      this.panel?.close();
-    }
     this.personChange.emit(this.personConfirmation);
   }
 
