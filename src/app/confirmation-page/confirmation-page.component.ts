@@ -1,6 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ViewChild } from '@angular/core';
-import { ConfirmationPersonCardComponent, PersonConfirmation } from '../confirmation-person-card/confirmation-person-card.component';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ConfirmationPersonCardComponent } from '../confirmation-person-card/confirmation-person-card.component';
+import { PersonConfirmation } from '../types/person-confirmation';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationConfirmationComponent } from '../confirmation-confirmation/confirmation-confirmation.component';
 
 @Component({
   selector: 'rsvp-confirmation-page',
@@ -30,48 +33,72 @@ import { ConfirmationPersonCardComponent, PersonConfirmation } from '../confirma
     ]),
   ]
 })
-export class ConfirmationPageComponent {
-  @ViewChild('rsvp1')
-  rsvp1?: ConfirmationPersonCardComponent;
-  @ViewChild('rsvp2')
-  rsvp2?: ConfirmationPersonCardComponent;
+export class ConfirmationPageComponent implements OnInit {
+  @ViewChildren(ConfirmationPersonCardComponent)
+  rsvps?: QueryList<ConfirmationPersonCardComponent>;
 
-  get person1(): PersonConfirmation {
-    return this.getPerson('person1');
-  }
-  set person1(v: PersonConfirmation) {
-    sessionStorage.setItem('person1', JSON.stringify(v));
-  }
-  get person2() {
-    return this.getPerson('person2');
-  }
-  set person2(v: PersonConfirmation) {
-    if (this.rsvp2?.hidden) {
-      sessionStorage.removeItem('person2');
+  _people: PersonConfirmation[] = [];
+  get people() {
+    const savedPeople = this.getPeople();
+    if (this._people.length !== savedPeople.length) {
+      this._people = savedPeople;
+    } else {
+      for (const pair of savedPeople.map((p, i) => [p, this._people[i]])) {
+        if (pair[0].name !== pair[1].name || pair[0].present !== pair[1].present || pair[0].foodChoice !== pair[1].foodChoice) {
+          this._people = savedPeople;
+          break;
+        }
+      }
     }
-    sessionStorage.setItem('person2', JSON.stringify(v));
+    return this._people;
   }
 
-  getPerson(key: string): PersonConfirmation {
-    const p = sessionStorage.getItem(key);
+  get isReadyToSubmit() {
+    return !!this.rsvps && !this.rsvps.find(r => !r.isReadyToSubmit);
+  }
+
+  constructor(private matDialog: MatDialog) {}
+
+  ngOnInit(): void {
+    this._people = this.getPeople();
+    if (this._people.length === 0) {
+      this._people.push({});
+      localStorage.setItem('people', JSON.stringify(this._people));
+    }
+  }
+
+  getPeople(): PersonConfirmation[] {
+    const p = localStorage.getItem('people');
     if (p) {
       try {
-        return JSON.parse(p);
+        return JSON.parse(p || '[]');
       } catch (e) {
-        return {};
+        return [];
       }
     } else {
-      return {};
+      return [];
     }
+  }
+
+  addPerson() {
+    this._people.push({});
+    localStorage.setItem('people', JSON.stringify(this._people));
+  }
+
+  removePerson(index: number) {
+    this._people.splice(index, 1);
+    localStorage.setItem('people', JSON.stringify(this._people));
+  }
+
+  updatePerson(index: number, person: PersonConfirmation) {
+    Object.assign(this._people[index], person);
+    localStorage.setItem('people', JSON.stringify(this._people));
   }
 
   confirm() {
-    if (this.rsvp1?.isReadyToSubmit && (this.rsvp2?.hidden || this.rsvp2?.isReadyToSubmit)) {
-      if (this.rsvp2.hidden) {
-        alert(`Confirmation:\n${JSON.stringify(this.getPerson('person1'))}`);
-      } else {
-        alert(`Confirmation:\n${JSON.stringify(this.getPerson('person1'))}\n${JSON.stringify(this.getPerson('person2'))}`);
-      }
+    if (this.isReadyToSubmit) {
+      this.matDialog.open(ConfirmationConfirmationComponent, { data: this._people });
+      alert(`Confirmation:\n${this.getPeople().map(p => JSON.stringify(p)).join('\n')}`);
     }
   }
 }

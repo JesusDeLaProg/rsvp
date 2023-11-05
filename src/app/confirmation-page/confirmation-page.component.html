@@ -1,36 +1,18 @@
 <h1 @fade style="text-align: center;">24 août 2024<br><a style="text-decoration: none; color: black;" target="_blank" href="https://maps.app.goo.gl/8Nh7jgposRVN9vsT6">Auberge Le Saint-Gabriel</a></h1>
 
-<div @fade class="timeline">
-    <span class="material-symbols-outlined">toll</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">wine_bar</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">restaurant_menu</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">check_indeterminate_small</span>
-    <span class="material-symbols-outlined">airport_shuttle</span>
-</div>
-
 <div style="display: inline-flex; width: 100%; justify-content: center;">
-    <button class="confirm" color="primary" mat-stroked-button
-        [disabled]="!rsvp1.isReadyToSubmit || (!rsvp2.hidden && !rsvp2.isReadyToSubmit)"
+    <button class="confirm" color="primary" mat-raised-button
+        [disabled]="!isReadyToSubmit"
         (click)="confirm()">
         <span class="button-content">
             <span class="button-icon">
-                <mat-icon @fadeRotate *ngIf="rsvp1.isReadyToSubmit && (rsvp2.hidden || rsvp2.isReadyToSubmit)">check</mat-icon>
-                <mat-icon @fadeCounterRotate *ngIf="!rsvp1.isReadyToSubmit || (!rsvp2.hidden && !rsvp2.isReadyToSubmit)">close</mat-icon>
+                <mat-icon @fadeRotate *ngIf="isReadyToSubmit">check</mat-icon>
+                <mat-icon @fadeCounterRotate *ngIf="!isReadyToSubmit">close</mat-icon>
             </span>
-            Confirmer
+            Cliquez ici pour confirmer
         </span>
     </button>
 </div>
-<rsvp-confirmation-person-card #rsvp1 @fade [(confirmation)]="person1"></rsvp-confirmation-person-card>
-<rsvp-confirmation-person-card #rsvp2 @fade [(confirmation)]="person2" [hideable]="true"></rsvp-confirmation-person-card>
-<button @fade class="info" mat-raised-button #tooltip="matTooltip" matTooltipPosition="after" (click)="tooltip.toggle()"
-    matTooltip="L'invitation que vous avez reçue par la poste est seulement pour vous (seul(e), en couple ou avec Plus-Un).">
-    <mat-icon>info</mat-icon>Seulement 2 personnes?</button>
+<rsvp-confirmation-person-card *ngFor="let person of people; index as i" @fade
+    [person]="person" (personChange)="updatePerson(i, $event)" (deleted)="removePerson(i)" [deleteable]="i > 0"></rsvp-confirmation-person-card>
+<button class="add-person-button" mat-raised-button (click)="addPerson()">Ajouter une personne</button>

@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,6 +25,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ConfirmationPersonCardComponent } from './confirmation-person-card/confirmation-person-card.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { FaqComponent } from './faq/faq.component';
+import { SessionStartComponent } from './session-start/session-start.component';
+import { ConfirmationConfirmationComponent } from './confirmation-confirmation/confirmation-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { FaqComponent } from './faq/faq.component';
     HomePageComponent,
     ConfirmationPersonCardComponent,
     FoodMenuComponent,
-    FaqComponent
+    FaqComponent,
+    SessionStartComponent,
+    ConfirmationConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { FaqComponent } from './faq/faq.component';
     MatBottomSheetModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatFormFieldModule,

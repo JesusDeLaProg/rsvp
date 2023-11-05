@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Merci d'avoir confirmé</h2>
+<mat-dialog-content class="mat-typography">
+  <p *ngIf="presentPeople.length > 0">Nous avons bien enregistré la présence de:</p>
+  <ul *ngIf="presentPeople.length > 0">
+    <li *ngFor="let person of presentPeople">{{person.name}}: {{getFoodChoiceLabel(person)}}{{!!person.allergy? '*' : ''}}</li>
+  </ul>
+  <p *ngIf="absentPeople.length > 0">Nous avons bien enregistré l'absence de:</p>
+  <ul *ngIf="absentPeople.length > 0">
+    <li *ngFor="let person of absentPeople">{{person.name}}</li>
+  </ul>
+  <p *ngIf="someHasAllergy()">*: Avec allergie/restriction</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="primary" cdkFocusInitial>Fermer</button>
+</mat-dialog-actions>

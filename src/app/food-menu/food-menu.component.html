@@ -1,8 +1,11 @@
 <span class="section-title">Entrées: </span>
 <mat-divider></mat-divider>
 <div class="section-content">
-    <p>Burrata, tomates ancestrales, émulsion aux herbes fraîches</p>
-    <p>Agnolotti à la ricotta et champignons, maitake, beurre blanc, chips de parmesan</p>
+    <p>Burrata, tomates ancestrales, émulsion aux herbes fraîches<br>
+        <b>ET</b><br>
+        Agnolotti à la ricotta et champignons, maitake, beurre blanc, chips de parmesan
+    </p>
+    <p></p>
 </div>
 <span class="section-title">Plat principal: </span>
 <mat-divider></mat-divider>
@@ -10,8 +13,9 @@
     <p style="font-weight: bold;">Veuillez choisir:</p>
     <mat-radio-group [(ngModel)]="foodChoice" class="presence-radio-group"
     (change)="closeBottomSheet()">
-        <mat-radio-button [value]="0">Volaille farcie à la pancetta, poivrons grillés, purée de chou-fleur et pomme, chou-fleur grillé, laitue amère</mat-radio-button>
-        <mat-radio-button [value]="1">Pavé de saumon, beurre blanc, purée de pomme de terre douce, salade de carottes aux herbes, échalottes frites</mat-radio-button>
+        <mat-radio-button (click)="foodChoiceClicked(0)" [value]="0">Volaille farcie à la pancetta, poivrons grillés, purée de chou-fleur et pomme, chou-fleur grillé, laitue amère</mat-radio-button>
+        <mat-radio-button (click)="foodChoiceClicked(1)" [value]="1">Pavé de saumon, beurre blanc, purée de pomme de terre douce, salade de carottes aux herbes, échalottes frites</mat-radio-button>
+        <mat-radio-button (click)="foodChoiceClicked(2)" [value]="2">Option végétarienne</mat-radio-button>
     </mat-radio-group>
 </div>
 <div *ngIf="!editMode" class="section-content">

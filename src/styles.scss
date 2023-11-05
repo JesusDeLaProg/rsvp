@@ -136,6 +136,12 @@ body {
   /*background: linear-gradient(30deg, rgba(mat.get-color-from-palette($marriage-rsvp-accent, 800), 0.2) 0%, rgba(white, 0) 75%);*/
   /*background-image: url("assets/paper-bg.jpg");
   background-size: auto;*/
+
+  button {
+    font-family: "Cormorant Garamond", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: large;
+  }
 }
 
 h1 {

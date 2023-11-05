@@ -1,15 +1,10 @@
-import { Component, ViewChild, Input, OnInit, Output, EventEmitter, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { FoodMenuComponent } from '../food-menu/food-menu.component';
 import { firstValueFrom } from 'rxjs';
-
-export interface PersonConfirmation {
-  name?: string;
-  present?: boolean;
-  foodChoice?: number;
-}
+import { PersonConfirmation } from '../types/person-confirmation';
 
 @Component({
   selector: 'rsvp-confirmation-person-card',
@@ -18,45 +13,48 @@ export interface PersonConfirmation {
 })
 export class ConfirmationPersonCardComponent {
 
-  @Input() hideable: boolean = false;
-
   @ViewChild(MatExpansionPanel)
   panel?: MatExpansionPanel;
 
+  @ViewChild('nameInput')
+  nameInput?: ElementRef;
+
   personConfirmation: PersonConfirmation = {};
   @Input()
-  set confirmation(p: PersonConfirmation) {
-    if (p !== null &&
-      (p.name !== this.personConfirmation.name
+  set person(p: PersonConfirmation) {
+    if (p.name !== this.personConfirmation.name
         || p.present !== this.personConfirmation.present
-        || p.foodChoice !== this.personConfirmation.foodChoice)) {
+        || p.foodChoice !== this.personConfirmation.foodChoice) {
       this.personConfirmation = p;
       this.personNameControl.setValue(p.name || '');
       this.presenceChanged(this.personConfirmation.present ?? false);
+      this.allergyControl.setValue(p.allergy || '');
     }
   }
   @Output()
-  confirmationChange = new EventEmitter<PersonConfirmation>();
+  personChange = new EventEmitter<PersonConfirmation>();
+
+  @Input()
+  deleteable = false;
+  @Output()
+  deleted = new EventEmitter<void>();
 
   private editingName_ = false;
   get editingName() { return this.editingName_; }
   set editingName(b: boolean) {
-    if (!(this.editingName_ = b)) {
-      this.personConfirmation.name = this.personNameControl.value || '';
-      this.confirmationChange.emit(this.personConfirmation);
+    if (this.editingName_ = b) {
+      setTimeout(() => this.nameInput?.nativeElement.focus(), 100);
+    } else {
+      this.personConfirmation.name = (this.personNameControl.value || '').trim();
+      this.personNameControl.setValue(this.personConfirmation.name);
+      this.personChange.emit(this.personConfirmation);
     }
   }
 
-  hidden_ = false;
-  get hidden() { return this.hidden_; }
-  set hidden(b: boolean) {
-    this.hidden_ = b;
-    this.confirmationChange.emit(this.personConfirmation);
-  }
-
+  allergyControl = new FormControl<string>('');
   personNameControl = new FormControl<string>('', [Validators.required,
   (c: AbstractControl<string>) => {
-    const parts = c.value.split(' ');
+    const parts = c.value.trim().split(' ');
     if (parts.every(s => !!s) && parts.length >= 2) {
       return {};
     } else {
@@ -65,9 +63,8 @@ export class ConfirmationPersonCardComponent {
   }]);
 
   get isReadyToSubmit() {
-    return !this.hidden &&
-      this.personConfirmation.foodChoice !== undefined &&
-      [0, 1].includes(this.personConfirmation.foodChoice) &&
+    return this.personConfirmation.foodChoice !== undefined &&
+      [0, 1, 2].includes(this.personConfirmation.foodChoice) &&
       !this.editingName &&
       this.personNameControl.valid;
   }
@@ -78,17 +75,13 @@ export class ConfirmationPersonCardComponent {
         return 'Volaille';
       case 1:
         return 'Saumon';
+      case 2:
+        return 'Végétarien';
     }
     return 'Aucun';
   }
 
   constructor(private bottomSheet: MatBottomSheet) { }
-
-  ngOnInit(): void {
-    if (this.hideable) {
-      this.hidden = !this.personNameControl.value;
-    }
-  }
 
   async openBottomSheet() {
     const bottomSheetRef = this.bottomSheet.open(FoodMenuComponent);
@@ -97,8 +90,12 @@ export class ConfirmationPersonCardComponent {
     const returnValue = await firstValueFrom(bottomSheetRef.afterDismissed());
     if (Number.isInteger(returnValue)) {
       this.personConfirmation.foodChoice = returnValue;
-      this.confirmationChange.emit(this.personConfirmation);
+      this.personChange.emit(this.personConfirmation);
     }
+  }
+
+  delete() {
+    this.deleted.emit();
   }
 
   presenceChanged(b: boolean) {
@@ -107,7 +104,18 @@ export class ConfirmationPersonCardComponent {
     } else {
       this.panel?.close();
     }
-    this.confirmationChange.emit(this.personConfirmation);
+    this.personChange.emit(this.personConfirmation);
+  }
+
+  nameInputLostFocus() {
+    if (!this.personNameControl.invalid) {
+      this.editingName = false;
+    }
+  }
+
+  allergyInputLostFocus() {
+    this.personConfirmation.allergy = this.allergyControl.value || '';
+    this.personChange.emit(this.personConfirmation);
   }
 
 }

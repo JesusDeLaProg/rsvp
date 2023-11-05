@@ -11,6 +11,16 @@ mat-toolbar {
 
     mat-toolbar-row {
         height: unset;
+
+        .menu-button-content {
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+            mat-icon {
+                margin-left: 5px;
+            }
+        }
     }
 
     mat-expansion-panel {

@@ -1,23 +1,22 @@
+<div class="top-margin"></div>
+<router-outlet></router-outlet>
 <mat-toolbar>
   <mat-toolbar-row>
     <div class="title">
       <span>M&J</span>
     </div>
-    <button (click)="panel?.toggle()" mat-icon-button class="example-icon"
+    <button (click)="panel?.toggle()" mat-button
       aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
+      <span class="menu-button-content">Menu <mat-icon>menu</mat-icon></span>
     </button>
   </mat-toolbar-row>
   <mat-toolbar-row>
     <mat-expansion-panel class="mat-elevation-z0">
       <div class="expansion-panel-content">
         <a mat-button routerLink="/">Accueil</a>
-        <a mat-button routerLink="/faq">FAQ</a>
+        <a mat-button routerLink="/faq">Foire aux questions</a>
         <a mat-button routerLink="/confirmation">Confirmer votre présence</a>
       </div>
     </mat-expansion-panel>
   </mat-toolbar-row>
 </mat-toolbar>
-<div class="top-margin"></div>
-
-<router-outlet></router-outlet>

@@ -1,5 +1,5 @@
 <div style="height: 100px;"></div>
-<h3 @fade style="text-align: center;">Foire aux Questions</h3>
+<h3 @fade style="text-align: center;">Foire aux questions</h3>
 <mat-accordion @fade multi>
     <mat-expansion-panel hideToggle #q1>
         <mat-expansion-panel-header>
@@ -8,10 +8,13 @@
                     <mat-icon @fade *ngIf="!q1.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q1.expanded">remove</mat-icon>
                 </span>
-                Où aura lieu la cérémonie?
+                Où auront lieu la cérémonie et la réception?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>La cérémonie aura lieu à L'<a target="_blank" href="https://maps.app.goo.gl/SFQr53UPqdSGRHFR8">Auberge Le Saint-Gabriel, située au 426 rue Saint-Gabriel, Montréal, Québec H2Y 2Z9</a>. La cérémonie aura lieu à l'intérieur.</p>
+        <img style="width: 100%;" src="assets/l-auberge-saint-gabriel.jpg">
+        <p>La cérémonie et la réception auront lieu à L'<a target="_blank" href="https://maps.app.goo.gl/SFQr53UPqdSGRHFR8">Auberge Le
+                Saint-Gabriel, située au 426 rue Saint-Gabriel, Montréal, Québec H2Y 2Z9</a>. La cérémonie aura lieu à
+            l'intérieur.</p>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle #q2>
         <mat-expansion-panel-header>
@@ -20,21 +23,26 @@
                     <mat-icon @fade *ngIf="!q2.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q2.expanded">remove</mat-icon>
                 </span>
-                Où aura lieu la réception?
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>La réception aura également lieu à L'<a target="_blank" href="https://maps.app.goo.gl/SFQr53UPqdSGRHFR8">Auberge Le Saint-Gabriel, située au 426 rue Saint-Gabriel, Montréal, Québec H2Y 2Z9</a>.</p>
-    </mat-expansion-panel>
-    <mat-expansion-panel hideToggle #q3>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <span class="expansion-toggle">
-                    <mat-icon @fade *ngIf="!q3.expanded">add</mat-icon>
-                    <mat-icon @fade *ngIf="q3.expanded">remove</mat-icon>
-                </span>
                 Comment se déroulera la journée?
             </mat-panel-title>
         </mat-expansion-panel-header>
+        <!--
+        <div class="timeline">
+            <span class="material-symbols-outlined">toll</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">wine_bar</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">restaurant_menu</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">check_indeterminate_small</span>
+            <span class="material-symbols-outlined">airport_shuttle</span>
+        </div>
+        -->
         <ul>
             <li><span class="first-letter">A</span>rrivée des invités: <b>15h30</b></li>
             <li><span class="first-letter">D</span>ébut de la cérémonie: <b>16h00</b></li>
@@ -44,6 +52,20 @@
             <li><span class="first-letter">F</span>in de la soirée: <b>1h30</b></li>
         </ul>
     </mat-expansion-panel>
+    <mat-expansion-panel hideToggle #q3>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <span class="expansion-toggle">
+                    <mat-icon @fade *ngIf="!q3.expanded">add</mat-icon>
+                    <mat-icon @fade *ngIf="q3.expanded">remove</mat-icon>
+                </span>
+                Quelle est la date limite pour répondre à l'invitation et comment dois-je répondre?
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Nous attendons votre réponse au plus tard le 15 mars 2024. Vous pouvez répondre directement sur ce même
+            site, <a routerLink="/confirmation">ici</a>. En répondant par internet, vous nous faciliterez grandement la
+            tâche d'enregistrer les préférences de chacun.</p>
+    </mat-expansion-panel>
     <mat-expansion-panel hideToggle #q4>
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -51,10 +73,24 @@
                     <mat-icon @fade *ngIf="!q4.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q4.expanded">remove</mat-icon>
                 </span>
-                Quelle est la date limite pour répondre à l'invitation, comment dois-je répondre?
+                Y aura-t-il du stationnement sur place?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Nous attendons votre réponse au plus tard le 1er avril 2024. Vous pouvez répondre directement sur ce même site, <a routerLink="/confirmation">ici</a>. En répondant par internet, vous nous faciliterez grandement la tâche d'enregistrer les préférences de chacun.</p>
+        <p>Il y aura du stationnement à deux endroits:</p>
+        <ul class="spaced">
+            <li><span class="first-letter">10</span> places directement derrière L'<a target="_blank"
+                    href="https://maps.app.goo.gl/yNN6zRwV4MZ3H4bWA">Auberge Le Saint-Gabriel, au 425 rue
+                    Saint-Jean-Baptiste, Montréal, Québec H2Y 1G3</a>. Ces places sont au coût de X par voiture.</li>
+            <li style="margin-top: 10px;"><span class="first-letter">U</span>n grand nombre de places supplémentaires
+                dans le stationnement du <a target="_blank" href="https://maps.app.goo.gl/HKnjfs83h8FkZUhLA">Centre des
+                    Sciences de Montréal, à 4 minutes de marche au 2 rue de la Commune Ouest, Montréal, Québec H2Y
+                    4B2</a>. Ces places sont au coût de 35$ par voiture pour une durée de 24h.</li>
+            <li><span class="first-letter">N</span>ous encourageons grandement le covoiturage, puisque le nombre de
+                places près de l'Auberge est limité.</li>
+            <li><span class="first-letter">P</span>our ceux qui souhaiteraient utiliser le transport en commun, la
+                station de Métro la plus proche est <a target="_blank"
+                    href="https://maps.app.goo.gl/xxcpfcsRNXEqXpXB7">Champ-de-Mars</a>.</li>
+        </ul>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle #q5>
         <mat-expansion-panel-header>
@@ -63,16 +99,11 @@
                     <mat-icon @fade *ngIf="!q5.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q5.expanded">remove</mat-icon>
                 </span>
-                Y aura-t-il du stationnement sur place?
+                Est-ce que les enfants sont les bienvenus?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Il y aura du stationnement à deux endroits:</p>
-        <ul class="spaced">
-            <li><span class="first-letter">10</span> places directement derrière L'<a target="_blank" href="https://maps.app.goo.gl/yNN6zRwV4MZ3H4bWA">Auberge Le Saint-Gabriel, au 425 rue Saint-Jean-Baptiste, Montréal, Québec H2Y 1G3</a>. Ces places sont au coût de X par voiture.</li>
-            <li style="margin-top: 10px;"><span class="first-letter">U</span>n grand nombre de places supplémentaires dans le stationnement du <a target="_blank" href="https://maps.app.goo.gl/HKnjfs83h8FkZUhLA">Centre des Sciences de Montréal, à 4 minutes de marche au 2 rue de la Commune Ouest, Montréal, Québec H2Y 4B2</a>. Ces places sont au coût de 35$ par voiture pour une durée de 24h.</li>
-            <li><span class="first-letter">N</span>ous encourageons grandement le covoiturage, puisque le nombre de places près de l'Auberge est limité.</li>
-            <li><span class="first-letter">P</span>our ceux qui souhaiteraient utiliser le transport en commun, la station de Métro la plus proche est <a target="_blank" href="https://maps.app.goo.gl/xxcpfcsRNXEqXpXB7">Champ-de-Mars</a>.</li>
-        </ul>
+        <p>Bien que nous aimons vos petits, notre mariage sera un événement adulte seulement pour que tous puisse
+            relaxer et profiter du moment avec nous.</p>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle #q6>
         <mat-expansion-panel-header>
@@ -81,10 +112,11 @@
                     <mat-icon @fade *ngIf="!q6.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q6.expanded">remove</mat-icon>
                 </span>
-                Est-ce que les enfants sont les bienvenus?
+                Puis-je inviter un Plus-un (+1)?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Bien que nous aimons vos petits, notre mariage sera un événement adulte seulement pour que tous puisse relaxer et profiter du moment avec nous.</p>
+        <p>Bien sûr! Si vous voyez seulement un seul nom sur la <a routerLink="/confirmation">page de confirmation</a>,
+            vous pouvez ajouter votre +1 en cliquant sur le bouton “Ajouter une personne” au bas de la page, puis entrez le nom de votre +1 ainsi que ses choix pour le repas.</p>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle #q7>
         <mat-expansion-panel-header>
@@ -93,10 +125,11 @@
                     <mat-icon @fade *ngIf="!q7.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q7.expanded">remove</mat-icon>
                 </span>
-                Puis-je inviter un Plus-un (+1)?
+                Que faire si j'ai une allergie alimentaire?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Bien sûr! Si vous voyez seulement un seul nom sur la <a routerLink="/confirmation">page de confirmation</a>, vous pouvez ajouter votre +1 en cliquant sur le bouton “+” dans le coin supérieur droit de la deuxième carte pour l'activer, puis entrez le nom de votre +1 ainsi que ses choix pour le repas.</p>
+        <p>Si vous avez une allergie ou toute autre restriction alimentaire, veuillez nous l'indiquer dans le champ "Restriction alimentaire" sur la <a routerLink="/confirmation">page de confirmation</a> dans votre boîte de confirmation.
+        </p>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle #q8>
         <mat-expansion-panel-header>
@@ -105,10 +138,12 @@
                     <mat-icon @fade *ngIf="!q8.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q8.expanded">remove</mat-icon>
                 </span>
-                Quelles sont nos options d'hébergement?
+                Y a-t-il une contribution à payer?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Les mariés iront dormir après la réception à l'Hôtel X, situé au XYZ. Si vous désirez dormir au même hôtel à vos frais, au coût de X$ la nuit, veuillez nous l'indiquer le plus vite possible pour que nous puissions essayer de réserver toutes les chambres en un seul bloc.</p>
+        <p>Votre présence avec nous est ce qui est le plus important pour nous! Si vous désirez honorer notre union avec
+            un cadeau, vous pourrez déposer une carte dans une boîte qui sera disposée à cet effet dans la salle de
+            réception.</p>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle #q9>
         <mat-expansion-panel-header>
@@ -117,45 +152,13 @@
                     <mat-icon @fade *ngIf="!q9.expanded">add</mat-icon>
                     <mat-icon @fade *ngIf="q9.expanded">remove</mat-icon>
                 </span>
-                Y aura-t-il des options végétariennes lors du repas?
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>Si vous avez de telles restrictions, veuillez nous l'indiquer dans le champ “Allergies/Restrictions” sur la <a routerLink="/confirmation">page de confirmation</a> pour que nous puissions travailler avec L'Auberge pour concevoir un plat principal qui saura satisfaire toutes les restrictions alimentaires.</p>
-    </mat-expansion-panel>
-    <mat-expansion-panel hideToggle #q10>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <span class="expansion-toggle">
-                    <mat-icon @fade *ngIf="!q10.expanded">add</mat-icon>
-                    <mat-icon @fade *ngIf="q10.expanded">remove</mat-icon>
-                </span>
-                Aurons-nous accès à un bar lors de la soirée?
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>Après le souper, le bar sera ouvert en mode “running tab” (“facture ouverte”) facturé à la consommation. Ne vous en faîtes pas pour la facture, elle sera assumée par les mariés et le budget est grandement suffisant pour une quantité généreuse de boissons non alcoolisées, cocktails, bières et <i>shooters</i>!</p>
-    </mat-expansion-panel>
-    <mat-expansion-panel hideToggle #q11>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <span class="expansion-toggle">
-                    <mat-icon @fade *ngIf="!q11.expanded">add</mat-icon>
-                    <mat-icon @fade *ngIf="q11.expanded">remove</mat-icon>
-                </span>
-                Devrais-je apporter un cadeau?
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>Votre présence avec nous est ce qui est le plus important pour nous! Si vous désirez honorer notre union avec un cadeau, vous pourrez déposer une carte dans une boîte qui sera disposée à cet effet dans la salle de réception. Si vous désirez nous donner un cadeau trop gros pour la boîte, veuillez arranger la livraison avec les mariés après la réception.</p>
-    </mat-expansion-panel>
-    <mat-expansion-panel hideToggle #q12>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <span class="expansion-toggle">
-                    <mat-icon @fade *ngIf="!q12.expanded">add</mat-icon>
-                    <mat-icon @fade *ngIf="q12.expanded">remove</mat-icon>
-                </span>
                 J'ai d'autres questions, comment puis-je vous les poser?
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Vous pouvez nous poser toutes vos questions par courriel au <a *ngIf="q12.expanded" href="mailto:{{email}}">{{email}}</a>, ou par appel ou texto au <a *ngIf="q12.expanded" href="tel:{{telephone}}">{{telephone}}</a>. Il nous fera grand plaisir de discuter avec vous et de répondre à vos questions. Si vous avez une excellente question, nous pourrions même vous faire l'honneur de l'ajouter à cette FAQ!</p>
+        <p>Vous pouvez nous poser toutes vos questions par courriel au <a *ngIf="q9.expanded"
+                href="mailto:{{email}}">{{email}}</a>, ou par appel ou texto au <a *ngIf="q9.expanded"
+                href="tel:{{telephone}}">{{telephone}}</a>. Il nous fera grand plaisir de discuter avec vous et de
+            répondre à vos questions. Si vous avez une excellente question, nous pourrions même vous faire l'honneur de
+            l'ajouter à cette foire aux questions!</p>
     </mat-expansion-panel>
 </mat-accordion>

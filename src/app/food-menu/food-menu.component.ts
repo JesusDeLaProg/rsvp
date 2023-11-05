@@ -15,4 +15,10 @@ export class FoodMenuComponent {
   closeBottomSheet() {
     this.bottomSheetRef?.dismiss(this.foodChoice);
   }
+
+  foodChoiceClicked(choice: number) {
+    if (choice === this.foodChoice) {
+      this.closeBottomSheet();
+    }
+  }
 }

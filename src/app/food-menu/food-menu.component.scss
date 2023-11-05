@@ -1,3 +1,16 @@
 .section-title {
     font-weight: bolder;
 }
+
+mat-radio-group {
+    display: flex;
+    flex-direction: column;
+
+    mat-radio-button:nth-child(1) {
+        margin-top: 0;
+    }
+
+    mat-radio-button {
+        margin-top: 20px;
+    }
+}
