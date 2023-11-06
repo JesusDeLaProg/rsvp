@@ -19,7 +19,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { DefaultHomeComponent } from './default-home/default-home.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ConfirmationPersonCardComponent } from './confirmation-person-card/confirmation-person-card.component';
@@ -33,7 +32,6 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 @NgModule({
   declarations: [
     AppComponent,
-    DefaultHomeComponent,
     ConfirmationPageComponent,
     HomePageComponent,
     ConfirmationPersonCardComponent,

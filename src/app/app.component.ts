@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription, firstValueFrom } from 'rxjs';
 import { PersonConfirmation } from './types/person-confirmation';
 import { MatDialog } from '@angular/material/dialog';
