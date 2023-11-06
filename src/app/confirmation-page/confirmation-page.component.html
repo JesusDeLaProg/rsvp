@@ -2,7 +2,7 @@
     <h1 class="title" @fade>24 août<br>2024</h1>
 </div>
 
-<div style="display: inline-flex; width: 100%; justify-content: center;">
+<div class="content">
     <button class="confirm" color="primary" mat-raised-button
         [disabled]="!isReadyToSubmit"
         (click)="confirm()">
@@ -14,7 +14,7 @@
             Cliquez ici pour confirmer
         </span>
     </button>
+    <rsvp-confirmation-person-card *ngFor="let person of people; index as i" @fade
+        [person]="person" (personChange)="updatePerson(i, $event)" (deleted)="removePerson(i)" [deleteable]="i > 0"></rsvp-confirmation-person-card>
+    <button class="add-person-button" mat-raised-button (click)="addPerson()">Ajouter une personne</button>
 </div>
-<rsvp-confirmation-person-card *ngFor="let person of people; index as i" @fade
-    [person]="person" (personChange)="updatePerson(i, $event)" (deleted)="removePerson(i)" [deleteable]="i > 0"></rsvp-confirmation-person-card>
-<button class="add-person-button" mat-raised-button (click)="addPerson()">Ajouter une personne</button>

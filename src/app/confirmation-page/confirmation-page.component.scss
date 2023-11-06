@@ -56,6 +56,16 @@ a.map-link {
     }
 }
 
+div.content {
+    width: 100%;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 button.confirm {
     margin-top: 20px;
     margin-left: 20px;
@@ -86,4 +96,5 @@ button.confirm {
 
 button.add-person-button {
     margin-left: 20px;
+    margin-right: 20px;
 }

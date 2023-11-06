@@ -1,13 +1,20 @@
 <h2 mat-dialog-title>Merci d'avoir confirmé</h2>
 <mat-dialog-content class="mat-typography">
-  <p *ngIf="presentPeople.length > 0">Nous avons bien enregistré la présence de:</p>
-  <ul *ngIf="presentPeople.length > 0">
-    <li *ngFor="let person of presentPeople">{{person.name}}: {{getFoodChoiceLabel(person)}}{{!!person.allergy? '*' : ''}}</li>
+  <p *ngIf="presentSuccesses.length > 0">Nous avons bien enregistré la présence de:</p>
+  <ul *ngIf="presentSuccesses.length > 0">
+    <li *ngFor="let person of presentSuccesses">{{person.name}}: {{getFoodChoiceLabel(person)}}{{!!person.allergy? '*' : ''}}</li>
   </ul>
-  <p *ngIf="absentPeople.length > 0">Nous avons bien enregistré l'absence de:</p>
-  <ul *ngIf="absentPeople.length > 0">
-    <li *ngFor="let person of absentPeople">{{person.name}}</li>
+  <p *ngIf="absentSuccesses.length > 0">Nous avons bien enregistré l'absence de:</p>
+  <ul *ngIf="absentSuccesses.length > 0">
+    <li *ngFor="let person of absentSuccesses">{{person.name}}</li>
   </ul>
+  <p *ngIf="failureNames.length > 0">Une erreur s'est produite lors de l'entregistrement de:</p>
+  <ul *ngIf="failureNames.length > 0">
+    <li *ngFor="let name of failureNames">{{name}}</li>
+  </ul>
+  <p *ngIf="failureNames.length > 0">
+    <b>Veuillez nous appeler ou nous écrire au <a target="_blank" href="mailto:{{email}}">{{email}}</a> ou au <a target="_blank" href="tel:{{telephone}}">{{telephone}}</a> pour compléter l'inscription.</b>
+  </p>
   <p *ngIf="someHasAllergy()">*: Avec allergie/restriction</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

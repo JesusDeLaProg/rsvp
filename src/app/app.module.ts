@@ -27,6 +27,8 @@ import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { FaqComponent } from './faq/faq.component';
 import { SessionStartComponent } from './session-start/session-start.component';
 import { ConfirmationConfirmationComponent } from './confirmation-confirmation/confirmation-confirmation.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { ConfirmationConfirmationComponent } from './confirmation-confirmation/c
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    provideFirebaseApp(() => initializeApp({"projectId":"firebase-marriage-rsvp","appId":"1:96894765673:web:77ba4f054baa54199f30f8","storageBucket":"firebase-marriage-rsvp.appspot.com","apiKey":"AIzaSyA2OD8AthCTiluUHV6NyVzpx0h-prU0LHQ","authDomain":"fir-marriage-rsvp.firebaseapp.com","messagingSenderId":"96894765673","measurementId":"G-SGQB7F9Z8Y"})),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

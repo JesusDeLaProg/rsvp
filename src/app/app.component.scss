@@ -3,7 +3,7 @@ mat-toolbar {
     top: 0;
     transition: 0.5s ease-in;
     transition-property: box-shadow;
-    background: white;// linear-gradient(180deg, rgba(#777, 0.75) 0%, rgba(white, 0.5) 90%, rgba(white, 0) 100%);
+    background: white; // linear-gradient(180deg, rgba(#777, 0.75) 0%, rgba(white, 0.5) 90%, rgba(white, 0) 100%);
 
     .spacer {
         flex: 1 1 auto;
@@ -46,9 +46,14 @@ mat-toolbar {
         padding-top: 7px;
         padding-bottom: 7px;
 
-        span {
-            font-size: larger;
-            font-style: italic;
+        a {
+            text-decoration: none;
+            color: black;
+
+            span {
+                font-size: larger;
+                font-style: italic;
+            }
         }
     }
 }

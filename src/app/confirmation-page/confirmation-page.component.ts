@@ -1,9 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ConfirmationPersonCardComponent } from '../confirmation-person-card/confirmation-person-card.component';
 import { PersonConfirmation } from '../types/person-confirmation';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationConfirmationComponent } from '../confirmation-confirmation/confirmation-confirmation.component';
+import { CollectionReference, Firestore, addDoc, collection } from '@angular/fire/firestore';
+
+type PersonConfirmationWithTimestamp = PersonConfirmation & { timestamp: Date };
 
 @Component({
   selector: 'rsvp-confirmation-page',
@@ -33,9 +36,11 @@ import { ConfirmationConfirmationComponent } from '../confirmation-confirmation/
     ]),
   ]
 })
-export class ConfirmationPageComponent implements OnInit {
+export class ConfirmationPageComponent implements OnInit, AfterViewInit {
   @ViewChildren(ConfirmationPersonCardComponent)
   rsvps?: QueryList<ConfirmationPersonCardComponent>;
+
+  confirmationCollection: CollectionReference<PersonConfirmationWithTimestamp>;
 
   _people: PersonConfirmation[] = [];
   get people() {
@@ -53,11 +58,18 @@ export class ConfirmationPageComponent implements OnInit {
     return this._people;
   }
 
+  _initialized = false;
   get isReadyToSubmit() {
-    return !!this.rsvps && !this.rsvps.find(r => !r.isReadyToSubmit);
+    return this._initialized && !!this.rsvps && !this.rsvps.find(r => !r.isReadyToSubmit);
   }
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog, firestore: Firestore) {
+    this.confirmationCollection = collection(firestore, 'confirmations') as CollectionReference<PersonConfirmationWithTimestamp, PersonConfirmationWithTimestamp>;
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => this._initialized = true);
+  }
 
   ngOnInit(): void {
     this._people = this.getPeople();
@@ -95,10 +107,20 @@ export class ConfirmationPageComponent implements OnInit {
     localStorage.setItem('people', JSON.stringify(this._people));
   }
 
-  confirm() {
+  async confirm() {
     if (this.isReadyToSubmit) {
-      this.matDialog.open(ConfirmationConfirmationComponent, { data: this._people });
-      alert(`Confirmation:\n${this.getPeople().map(p => JSON.stringify(p)).join('\n')}`);
+      const result = await Promise.allSettled(this._people.map(p => addDoc(this.confirmationCollection, { ...p, timestamp: new Date() })));
+      const successes: PersonConfirmation[] = [];
+      const failures: {person: PersonConfirmation, error: any}[] = [];
+      for (let i = 0; i < result.length; ++i) {
+        const r = result[i];
+        if (r.status === 'fulfilled') {
+          successes.push(this._people[i]);
+        } else {
+          failures.push({ person: this._people[i], error: r.reason });
+        }
+      }
+      this.matDialog.open(ConfirmationConfirmationComponent, { data: { successes, failures } });
     }
   }
 }

@@ -9,18 +9,40 @@ import { PersonConfirmation } from '../types/person-confirmation';
 })
 export class ConfirmationConfirmationComponent {
 
-  presentPeople: PersonConfirmation[] = [];
-  absentPeople: PersonConfirmation[] = [];
-
-  constructor(@Inject(MAT_DIALOG_DATA) people: PersonConfirmation[]) {
-    for (const p of people) {
-      if (p.present) {
-        this.presentPeople.push(p);
-      } else {
-        this.absentPeople.push(p);
-      }
-    }
+  get presentSuccesses() {
+    return this.data.successes.filter(p => p.present);
   }
+
+  get absentSuccesses() {
+    return this.data.successes.filter(p => !p.present);
+  }
+
+  get failureNames() {
+    return this.data.failures.map(p => p.person.name);
+  }
+
+  get email() {
+    return [
+      [
+        'com',
+        'gmail',
+      ].reverse().join('.'),
+      [
+        'maxime',
+        'charland'
+      ].reverse().join('.')
+    ].reverse().join('@');
+  }
+
+  get telephone() {
+    return [
+      3780,
+      884,
+      514
+    ].reverse().join('-');
+  }
+
+  constructor(@Inject(MAT_DIALOG_DATA) private data: { successes: PersonConfirmation[], failures: { person: PersonConfirmation, error: any }[] }) {}
 
   getFoodChoiceLabel(person: PersonConfirmation) {
     switch (person.foodChoice) {
@@ -35,6 +57,6 @@ export class ConfirmationConfirmationComponent {
   }
 
   someHasAllergy() {
-    return this.presentPeople.some(p => !!p.allergy);
+    return this.presentSuccesses.some(p => !!p.allergy);
   }
 }
