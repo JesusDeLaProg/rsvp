@@ -44,14 +44,14 @@ div.content {
     max-width: 750px;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
 button.confirm {
-    margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
     text-transform: uppercase;
