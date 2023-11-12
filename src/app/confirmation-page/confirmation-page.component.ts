@@ -49,7 +49,9 @@ export class ConfirmationPageComponent implements OnInit, AfterViewInit {
       this._people = savedPeople;
     } else {
       for (const pair of savedPeople.map((p, i) => [p, this._people[i]])) {
-        if (pair[0].name !== pair[1].name || pair[0].present !== pair[1].present || pair[0].foodChoice !== pair[1].foodChoice) {
+        if (pair[0].name !== pair[1].name || pair[0].present !== pair[1].present ||
+          pair[0].foodChoice !== pair[1].foodChoice || pair[0].allergy !== pair[1].allergy ||
+          pair[0].email !== pair[1].email) {
           this._people = savedPeople;
           break;
         }

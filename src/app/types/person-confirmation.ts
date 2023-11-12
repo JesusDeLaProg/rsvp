@@ -3,4 +3,5 @@ export interface PersonConfirmation {
     present?: boolean;
     foodChoice?: number;
     allergy?: string;
+    email?: string;
   }

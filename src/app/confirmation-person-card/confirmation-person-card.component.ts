@@ -16,15 +16,16 @@ export class ConfirmationPersonCardComponent {
   nameInput?: ElementRef;
 
   personConfirmation: PersonConfirmation = {};
-  @Input()
+  @Input({ required: true })
   set person(p: PersonConfirmation) {
     if (p.name !== this.personConfirmation.name
-        || p.present !== this.personConfirmation.present
-        || p.foodChoice !== this.personConfirmation.foodChoice) {
+      || p.present !== this.personConfirmation.present
+      || p.foodChoice !== this.personConfirmation.foodChoice) {
       this.personConfirmation = p;
       this.personNameControl.setValue(p.name || '');
       this.presenceChanged(this.personConfirmation.present ?? false);
       this.allergyControl.setValue(p.allergy || '');
+      this.emailControl.setValue(p.email || '');
     }
   }
   @Output()
@@ -48,6 +49,7 @@ export class ConfirmationPersonCardComponent {
   }
 
   allergyControl = new FormControl<string>('');
+  emailControl = new FormControl<string>('', [Validators.email]);
   personNameControl = new FormControl<string>('', [Validators.required,
   (c: AbstractControl<string>) => {
     const parts = c.value.trim().split(' ');
@@ -59,10 +61,13 @@ export class ConfirmationPersonCardComponent {
   }]);
 
   get isReadyToSubmit() {
-    return this.personConfirmation.foodChoice !== undefined &&
-      [0, 1, 2].includes(this.personConfirmation.foodChoice) &&
+    return (this.personConfirmation.present === false ||
+        (this.personConfirmation.present === true &&
+          this.personConfirmation.foodChoice !== undefined &&
+          [0, 1, 2].includes(this.personConfirmation.foodChoice))) &&
       !this.editingName &&
-      this.personNameControl.valid;
+      this.personNameControl.valid &&
+      this.emailControl.valid;
   }
 
   get foodChoiceLabel() {
@@ -106,6 +111,11 @@ export class ConfirmationPersonCardComponent {
 
   allergyInputLostFocus() {
     this.personConfirmation.allergy = this.allergyControl.value || '';
+    this.personChange.emit(this.personConfirmation);
+  }
+
+  emailInputLostFocus() {
+    this.personConfirmation.email = this.emailControl.value || '';
     this.personChange.emit(this.personConfirmation);
   }
 
