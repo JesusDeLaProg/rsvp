@@ -161,8 +161,9 @@ img.bg {
   pointer-events: none;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100dvw;
   height: 100dvh;
+  object-fit: cover;
   opacity: 0.05;
 }
 

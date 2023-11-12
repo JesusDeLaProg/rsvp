@@ -17,4 +17,15 @@
     <rsvp-confirmation-person-card *ngFor="let person of people; index as i" @fade
         [person]="person" (personChange)="updatePerson(i, $event)" (deleted)="removePerson(i)" [deleteable]="i > 0"></rsvp-confirmation-person-card>
     <button class="add-person-button" mat-raised-button (click)="addPerson()">Ajouter une personne</button>
+    <button class="confirm" color="primary" mat-raised-button
+        [disabled]="!isReadyToSubmit"
+        (click)="confirm()">
+        <span class="button-content">
+            <span class="button-icon">
+                <mat-icon @fadeRotate *ngIf="isReadyToSubmit">check</mat-icon>
+                <mat-icon @fadeCounterRotate *ngIf="!isReadyToSubmit">close</mat-icon>
+            </span>
+            Cliquez ici pour confirmer
+        </span>
+    </button>
 </div>
