@@ -4,7 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { Subscription, firstValueFrom } from 'rxjs';
 import { PersonConfirmation } from './types/person-confirmation';
 import { MatDialog } from '@angular/material/dialog';
-import { SessionStartComponent } from './session-start/session-start.component';
+import { SessionStartComponent } from './modals/session-start/session-start.component';
 
 @Component({
   selector: 'rsvp-root',

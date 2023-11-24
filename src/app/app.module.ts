@@ -24,8 +24,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ConfirmationPersonCardComponent } from './confirmation-person-card/confirmation-person-card.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { FaqComponent } from './faq/faq.component';
-import { SessionStartComponent } from './session-start/session-start.component';
-import { ConfirmationConfirmationComponent } from './confirmation-confirmation/confirmation-confirmation.component';
+import { SessionStartComponent } from './modals/session-start/session-start.component';
+import { ConfirmationConfirmationComponent } from './modals/confirmation-confirmation/confirmation-confirmation.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 

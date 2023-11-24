@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PersonConfirmation } from '../types/person-confirmation';
+import { PersonConfirmation } from '../../types/person-confirmation';
 
 @Component({
   selector: 'rsvp-confirmation-confirmation',

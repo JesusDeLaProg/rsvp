@@ -3,7 +3,7 @@ import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angu
 import { ConfirmationPersonCardComponent } from '../confirmation-person-card/confirmation-person-card.component';
 import { PersonConfirmation } from '../types/person-confirmation';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationConfirmationComponent } from '../confirmation-confirmation/confirmation-confirmation.component';
+import { ConfirmationConfirmationComponent } from '../modals/confirmation-confirmation/confirmation-confirmation.component';
 import { CollectionReference, Firestore, addDoc, collection } from '@angular/fire/firestore';
 
 type PersonConfirmationWithTimestamp = PersonConfirmation & { timestamp: Date };
