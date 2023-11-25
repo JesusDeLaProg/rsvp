@@ -8,52 +8,6 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-$champagne-palette: (
-  50: #f7e7ce,
-  100: #e6c48f,
-  200: #d09e4c,
-  300: #bb7900,
-  400: #ae6100,
-  500: #a24800,
-  600: #a13e00,
-  700: #9d2e00,
-  800: #971600,
-  900: #8e0000,
-  contrast: (50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: rgba(black, 0.87),
-    400: rgba(black, 0.87),
-    500: white,
-    600: white,
-    700: white,
-    800: white,
-    900: white)
-);
-
-$burgundy-palette: (
-  50:  #f5e7eb,
-  100: #e9c3cc,
-  200: #cc8993,
-  300: #b75e6c,
-  400: #bc3a4f,
-  500: #bc1f39,
-  600: #ae1837,
-  700: #9d0f30,
-  800: #900829,
-  900: #800020,
-  contrast: (50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: rgba(black, 0.87),
-    400: rgba(black, 0.87),
-    500: white,
-    600: white,
-    700: white,
-    800: white,
-    900: white)
-);
-
 $green-palette: (
   50:  #e2ede6,
   100: #bad3c0,
@@ -126,16 +80,10 @@ $marriage-rsvp-theme: mat.define-light-theme((color: (primary: $marriage-rsvp-pr
 html,
 body {
   height: 100dvh;
-}
-
-body {
   margin: 0;
   font-family: "Cormorant Garamond", "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-size: large;
-  /*background: linear-gradient(30deg, rgba(mat.get-color-from-palette($marriage-rsvp-accent, 800), 0.2) 0%, rgba(white, 0) 75%);*/
-  /*background-image: url("assets/paper-bg.jpg");
-  background-size: auto;*/
 
   button {
     font-family: "Cormorant Garamond", "Helvetica Neue", sans-serif;

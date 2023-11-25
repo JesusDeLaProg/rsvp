@@ -1,10 +1,11 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatAccordion, MatAccordionBase } from '@angular/material/expansion';
 
 @Component({
-  selector: 'rsvp-faq',
-  templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.scss'],
+  selector: 'rsvp-faq-page',
+  templateUrl: './faq-page.component.html',
+  styleUrls: ['./faq-page.component.scss'],
   animations: [
     trigger('fade', [
       state('void', style({ opacity: 0 })),
@@ -15,8 +16,10 @@ import { Component } from '@angular/core';
     ])
   ]
 })
-export class FaqComponent {
-  get email() {
+export class FaqPageComponent {
+  @ViewChild(MatAccordion, { static: true }) accordion!: MatAccordionBase;
+
+  email() {
     return [
       [
         'com',
@@ -29,7 +32,7 @@ export class FaqComponent {
     ].reverse().join('@');
   }
 
-  get telephone() {
+  telephone() {
     return [
       3780,
       884,

@@ -1,9 +1,9 @@
 import { Component, ViewChild, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { FoodMenuComponent } from '../food-menu/food-menu.component';
+import { FoodMenuComponent } from '../../food-menu/food-menu.component';
 import { firstValueFrom } from 'rxjs';
-import { PersonConfirmation } from '../types/person-confirmation';
+import { PersonConfirmation } from '../../types/person-confirmation';
 
 @Component({
   selector: 'rsvp-confirmation-person-card',

@@ -1,0 +1,12 @@
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <span class="expansion-toggle">
+                <mat-icon @fade *ngIf="!panel.expanded">add</mat-icon>
+                <mat-icon @fade *ngIf="panel.expanded">remove</mat-icon>
+            </span>
+            {{ question }}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-content></ng-content>
+</mat-expansion-panel>

@@ -1,0 +1,18 @@
+ul {
+    list-style-type: none;
+    padding-left: 0;
+
+    .first-letter {
+        font-size: larger;
+    }
+
+    &.spaced {
+        li:nth-child(1) {
+            margin-top: 0;
+        }
+
+        li {
+            margin-top: 10px;
+        }
+    }
+}

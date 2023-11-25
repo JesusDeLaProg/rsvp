@@ -19,15 +19,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { ConfirmationPageComponent } from './confirmation/confirmation-page/confirmation-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { ConfirmationPersonCardComponent } from './confirmation-person-card/confirmation-person-card.component';
+import { ConfirmationPersonCardComponent } from './confirmation/confirmation-person-card/confirmation-person-card.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
-import { FaqComponent } from './faq/faq.component';
+import { FaqPageComponent } from './faq/faq-page/faq-page.component';
 import { SessionStartComponent } from './modals/session-start/session-start.component';
 import { ConfirmationConfirmationComponent } from './modals/confirmation-confirmation/confirmation-confirmation.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { FaqQuestionComponent } from './faq/faq-question/faq-question.component';
+import { SecretLinkComponent } from './secret-link/secret-link.component';
 
 @NgModule({
   declarations: [
@@ -36,9 +38,11 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     HomePageComponent,
     ConfirmationPersonCardComponent,
     FoodMenuComponent,
-    FaqComponent,
+    FaqPageComponent,
     SessionStartComponent,
-    ConfirmationConfirmationComponent
+    ConfirmationConfirmationComponent,
+    FaqQuestionComponent,
+    SecretLinkComponent
   ],
   imports: [
     BrowserModule,

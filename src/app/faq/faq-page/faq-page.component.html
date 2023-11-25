@@ -1,0 +1,65 @@
+<div style="height: 100px;"></div>
+<h3 @fade style="text-align: center;">Foire aux questions</h3>
+<mat-accordion @fade multi>
+    <rsvp-faq-question [accordion]="accordion" question="Où auront lieu la cérémonie et la réception?">
+        <img style="width: 100%;" src="assets/l-auberge-saint-gabriel.jpg">
+        <p>La cérémonie et la réception auront lieu à L'<a target="_blank" href="https://maps.app.goo.gl/SFQr53UPqdSGRHFR8">Auberge Le
+                Saint-Gabriel, située au 426 rue Saint-Gabriel, Montréal, Québec H2Y 2Z9</a>. La cérémonie aura lieu à
+            l'intérieur.</p>
+    </rsvp-faq-question>
+    <rsvp-faq-question [accordion]="accordion" question="Comment se déroulera la journée?">
+        <ul>
+            <li><span class="first-letter">A</span>rrivée des invités: <b>15h30</b></li>
+            <li><span class="first-letter">D</span>ébut de la cérémonie: <b>16h00</b></li>
+            <li><span class="first-letter">C</span>ocktail: <b>17h00</b></li>
+            <li><span class="first-letter">R</span>epas: <b>18h30</b></li>
+            <li><span class="first-letter">F</span>in du repas et début de la soirée: <b>21h30</b></li>
+            <li><span class="first-letter">F</span>in de la soirée: <b>1h30</b></li>
+        </ul>
+    </rsvp-faq-question>
+    <rsvp-faq-question [accordion]="accordion" question="Quelle est la date limite pour répondre à l'invitation et comment dois-je répondre?">
+        <p>Nous attendons votre réponse au plus tard le 15 mars 2024. Vous pouvez répondre directement sur ce même
+            site, <a routerLink="/confirmation">ici</a>. En répondant par internet, vous nous faciliterez grandement la
+            tâche d'enregistrer les préférences de chacun.</p>
+    </rsvp-faq-question>
+    <rsvp-faq-question [accordion]="accordion" question="Y aura-t-il du stationnement sur place?">
+        <p>Il y aura du stationnement à deux endroits:</p>
+        <ul class="spaced">
+            <li><span class="first-letter">10</span> places directement derrière L'<a target="_blank"
+                    href="https://maps.app.goo.gl/yNN6zRwV4MZ3H4bWA">Auberge Le Saint-Gabriel, au 425 rue
+                    Saint-Jean-Baptiste, Montréal, Québec H2Y 1G3</a>. Ces places sont au coût de X par voiture.</li>
+            <li style="margin-top: 10px;"><span class="first-letter">U</span>n grand nombre de places supplémentaires
+                dans le stationnement du <a target="_blank" href="https://maps.app.goo.gl/HKnjfs83h8FkZUhLA">Centre des
+                    Sciences de Montréal, à 4 minutes de marche au 2 rue de la Commune Ouest, Montréal, Québec H2Y
+                    4B2</a>. Ces places sont au coût de 35$ par voiture pour une durée de 24h.</li>
+            <li><span class="first-letter">N</span>ous encourageons grandement le covoiturage, puisque le nombre de
+                places près de l'Auberge est limité.</li>
+            <li><span class="first-letter">P</span>our ceux qui souhaiteraient utiliser le transport en commun, la
+                station de Métro la plus proche est <a target="_blank"
+                    href="https://maps.app.goo.gl/xxcpfcsRNXEqXpXB7">Champ-de-Mars</a>.</li>
+        </ul>
+    </rsvp-faq-question>
+    <rsvp-faq-question [accordion]="accordion" question="Est-ce que les enfants sont les bienvenus?">
+        <p>Bien que nous aimons vos petits, notre mariage sera un événement adulte seulement pour que tous puisse
+            relaxer et profiter du moment avec nous.</p>
+    </rsvp-faq-question>
+    <rsvp-faq-question [accordion]="accordion" question="Puis-je venir accompagné?">
+        <p>Bien sûr! Si vous voyez seulement un seul nom sur la <a routerLink="/confirmation">page de confirmation</a>,
+            vous pouvez ajouter une personne en cliquant sur le bouton “Ajouter une personne” au bas de la page, puis entrez son nom ainsi que son choix pour le repas.</p>
+    </rsvp-faq-question>
+    <rsvp-faq-question [accordion]="accordion" question="Que faire si j'ai une allergie alimentaire?">
+        <p>Si vous avez une allergie ou toute autre restriction alimentaire, veuillez nous l'indiquer dans le champ "Restriction alimentaire" sur la
+            <a routerLink="/confirmation">page de confirmation</a> dans votre boîte de confirmation.</p>
+    </rsvp-faq-question>
+    <rsvp-faq-question [accordion]="accordion" question="Y a-t-il une contribution à payer?">
+        <p>Votre présence avec nous est ce qui est le plus important pour nous! Si vous désirez honorer notre union avec
+            un cadeau, vous pourrez déposer une carte dans une boîte qui sera disposée à cet effet dans la salle de
+            réception.</p>
+    </rsvp-faq-question>
+    <rsvp-faq-question [accordion]="accordion" question="J'ai d'autres questions, comment puis-je vous les poser?">
+        <p>Vous pouvez nous poser toutes vos questions par courriel au <rsvp-secret-link scheme="mailto" [link]="email"></rsvp-secret-link>,
+            ou par appel ou texto au <rsvp-secret-link scheme="tel" [link]="telephone"></rsvp-secret-link>.
+            Il nous fera grand plaisir de discuter avec vous et de répondre à vos questions.
+            Si vous avez une excellente question, nous pourrions même vous faire l'honneur de l'ajouter à cette foire aux questions!</p>
+    </rsvp-faq-question>
+</mat-accordion>
