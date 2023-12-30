@@ -111,7 +111,9 @@ export class ConfirmationPageComponent implements OnInit, AfterViewInit {
 
   async confirm() {
     if (this.isReadyToSubmit) {
-      const result = await Promise.allSettled(this._people.map(p => addDoc(this.confirmationCollection, { ...p, timestamp: new Date() })));
+      const result = await Promise.allSettled(
+        this._people.map(p => (p.present = p.present ?? false, p))
+        .map(p => addDoc(this.confirmationCollection, { ...p, timestamp: new Date() })));
       const successes: PersonConfirmation[] = [];
       const failures: {person: PersonConfirmation, error: any}[] = [];
       for (let i = 0; i < result.length; ++i) {

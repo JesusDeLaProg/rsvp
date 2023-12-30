@@ -61,7 +61,8 @@ export class ConfirmationPersonCardComponent {
   }]);
 
   get isReadyToSubmit() {
-    return (this.personConfirmation.present === false ||
+    return ((this.personConfirmation.name?.toLocaleLowerCase().startsWith('accompagnat') && this.personConfirmation.present === undefined) ||
+      this.personConfirmation.present === false ||
         (this.personConfirmation.present === true &&
           this.personConfirmation.foodChoice !== undefined &&
           [0, 1, 2].includes(this.personConfirmation.foodChoice))) &&
@@ -79,7 +80,7 @@ export class ConfirmationPersonCardComponent {
       case 2:
         return 'Végétarien';
     }
-    return 'Aucun';
+    return 'Veuillez choisir un plat';
   }
 
   constructor(private bottomSheet: MatBottomSheet) { }

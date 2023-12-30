@@ -4,36 +4,64 @@ import { firstValueFrom } from 'rxjs';
 import { SessionStartComponent } from './modals/session-start/session-start.component';
 import { PersonConfirmation } from './types/person-confirmation';
 
+function symDiff<T>(set1: Set<T>, set2: Set<T>): boolean {
+  const res: T[] = [];
+  for (const v of set1.values()) {
+    if (!set2.has(v)) {
+      return true;
+    }
+  }
+  for (const v of set2.values()) {
+    if (!set1.has(v)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  constructor(private dialog: MatDialog) {}
+  private get urlPeople(): string[] {
+    const res: string[] = [];
+    for (const n of (new URL(location.toString())).searchParams.getAll('person[]')) {
+      if (res.includes(n)) {
+        res.push(`Accompagnateur.rice (${n})`);
+      } else {
+        res.push(n);
+      }
+    }
+    return res;
+  }
+
+  private get savedPeople(): string[] {
+    try {
+      return (JSON.parse(localStorage.getItem('people') || '[]') as PersonConfirmation[])
+          .filter(p => !!p.name).map(p => p.name as string);
+    } catch {
+      return [];
+    }
+  }
+
+  constructor(private dialog: MatDialog) { }
 
   async startSession() {
-    if (!sessionStorage.getItem('sessionStarted')) {
+    if (this.urlPeople.length > 0 && symDiff(new Set(this.savedPeople), new Set(this.urlPeople))) {
       if (localStorage.getItem('people')) {
         const dialogRef = this.dialog.open(SessionStartComponent, { disableClose: true });
         const result = await firstValueFrom(dialogRef.afterClosed());
-        if (!result) {
-          localStorage.removeItem('people');
+        if (result) {  // Continue
+          return;
+        } else {  // Restart
+          localStorage.setItem('people',
+            JSON.stringify(
+              [...this.urlPeople.values()].map(n => ({ name: n } as PersonConfirmation))
+            )
+          );
         }
       }
-      sessionStorage.setItem('sessionStarted', 'true');
-    }
-    this.setUpLocalStorageFromCurrentUrl();
-  }
-
-  private setUpLocalStorageFromCurrentUrl() {
-    const params = (new URL(location.toString())).searchParams;
-    if (params.has('person[]')) {
-      const people = new Set(params.getAll('person[]'));
-      const savedPeople = JSON.parse(localStorage.getItem('people') || '[]') as PersonConfirmation[];
-      localStorage.setItem('people', JSON.stringify([
-        ...savedPeople.filter(p => p.name && people.has(p.name)),
-        ...[...people.keys()].map(name => ({ name }))
-      ]));
     }
   }
 }

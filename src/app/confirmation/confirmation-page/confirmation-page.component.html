@@ -4,8 +4,8 @@
 
 <div class="content">
     <rsvp-confirmation-person-card *ngFor="let person of people; index as i" @fade
-        [person]="person" (personChange)="updatePerson(i, $event)" (deleted)="removePerson(i)" [deleteable]="i > 0"></rsvp-confirmation-person-card>
-    <button class="add-person-button" mat-raised-button (click)="addPerson()">Ajouter une personne</button>
+        [person]="person" (personChange)="updatePerson(i, $event)"
+        (deleted)="removePerson(i)" [deleteable]="false"></rsvp-confirmation-person-card>
     <button class="confirm" color="primary" mat-raised-button
         [disabled]="!isReadyToSubmit"
         (click)="confirm()">
