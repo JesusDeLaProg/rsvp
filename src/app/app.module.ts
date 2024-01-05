@@ -30,6 +30,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FaqQuestionComponent } from './faq/faq-question/faq-question.component';
 import { SecretLinkComponent } from './secret-link/secret-link.component';
+import { UpdateReadyComponent } from './modals/update-ready/update-ready.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SecretLinkComponent } from './secret-link/secret-link.component';
     SessionStartComponent,
     ConfirmationConfirmationComponent,
     FaqQuestionComponent,
-    SecretLinkComponent
+    SecretLinkComponent,
+    UpdateReadyComponent
   ],
   imports: [
     BrowserModule,
