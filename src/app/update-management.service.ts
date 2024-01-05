@@ -22,7 +22,7 @@ export class UpdateManagementService {
       next: async e => {
         console.log(e);
         if (e.type === 'VERSION_READY') {
-          const ref = this.dialog.open(UpdateReadyComponent);
+          const ref = this.dialog.open(UpdateReadyComponent, { disableClose: true });
           await firstValueFrom(ref.afterClosed());
         }
       }
