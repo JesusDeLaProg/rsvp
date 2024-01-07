@@ -27,10 +27,11 @@ export class SessionService {
   private get urlPeople(): string[] {
     const res: string[] = [];
     for (const n of (new URL(location.toString())).searchParams.getAll('person[]')) {
-      if (res.includes(n)) {
-        res.push(`Accompagnateur.rice (${n})`);
+      const name = n === 'Émenauelle Lajoie' ? 'Emmanuelle Lajoie' : n;
+      if (res.includes(name)) {
+        res.push(`Accompagnateur.rice (${name})`);
       } else {
-        res.push(n);
+        res.push(name);
       }
     }
     return res;
