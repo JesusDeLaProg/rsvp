@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Subscription, firstValueFrom } from 'rxjs';
+import { ApplicationRef, Injectable } from '@angular/core';
+import { Subscription, filter, firstValueFrom } from 'rxjs';
 import { UpdateReadyComponent } from './modals/update-ready/update-ready.component';
 import { SwUpdate } from '@angular/service-worker';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +10,28 @@ import { MatDialog } from '@angular/material/dialog';
 export class UpdateManagementService {
 
   updates$?: Subscription;
+  updateChecking?: number;
+  updateDialog?: MatDialogRef<UpdateReadyComponent>;
 
   constructor(
+    private appref: ApplicationRef,
     private swUpdates: SwUpdate,
     private dialog: MatDialog
   ) {}
 
-  setup() {
+  async setup() {
     this.teardown();
+    await firstValueFrom(this.appref.isStable.pipe(filter(isStable => isStable === true)));
+    this.updateChecking = window.setInterval(async () => {
+      if (await this.swUpdates.checkForUpdate()) {
+        await this.showDialogIfNeeded();
+      }
+    }, 5 * 60 * 1000 /*5m*/);
     this.updates$ = this.swUpdates.versionUpdates.subscribe({
       next: async e => {
         console.log(e);
         if (e.type === 'VERSION_READY') {
-          const ref = this.dialog.open(UpdateReadyComponent, { disableClose: true });
-          await firstValueFrom(ref.afterClosed());
+          await this.showDialogIfNeeded();
         }
       }
     });
@@ -32,5 +40,17 @@ export class UpdateManagementService {
   teardown() {
     this.updates$?.unsubscribe();
     this.updates$ = undefined;
+    window.clearInterval(this.updateChecking);
+    this.updateChecking = undefined;
+    this.updateDialog?.close();
+    this.updateDialog = undefined;
+  }
+
+  private async showDialogIfNeeded() {
+    if (!this.updateDialog) {
+      this.updateDialog = this.dialog.open(UpdateReadyComponent, { disableClose: true });
+      await firstValueFrom(this.updateDialog.afterClosed());
+      this.updateDialog = undefined;
+    }
   }
 }
