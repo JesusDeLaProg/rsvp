@@ -26,7 +26,7 @@ export class UpdateManagementService {
       if (await this.swUpdates.checkForUpdate()) {
         await this.showDialogIfNeeded();
       }
-    }, 5 * 60 * 1000 /*5m*/);
+    }, 60 * 1000 /*1m*/);
     this.updates$ = this.swUpdates.versionUpdates.subscribe({
       next: async e => {
         console.log(e);
