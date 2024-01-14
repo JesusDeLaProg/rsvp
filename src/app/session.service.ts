@@ -50,7 +50,7 @@ export class SessionService {
 
   async startSession() {
     if (this.urlPeople.length > 0 && symDiff(new Set(this.savedPeople), new Set(this.urlPeople))) {
-      if (localStorage.getItem('people')) {
+      if (localStorage.getItem('people')) { // Already started, url different, ask for restart
         const dialogRef = this.dialog.open(SessionStartComponent, { disableClose: true });
         const result = await firstValueFrom(dialogRef.afterClosed());
         if (result) {  // Continue
@@ -62,6 +62,12 @@ export class SessionService {
             )
           );
         }
+      } else { // First app startup
+        localStorage.setItem('people',
+          JSON.stringify(
+            [...this.urlPeople.values()].map(n => ({ name: n } as PersonConfirmation))
+          )
+        );
       }
     }
   }
